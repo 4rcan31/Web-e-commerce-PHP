@@ -1,0 +1,33 @@
+Base de datos: 
+
+.-.-.--.-.-.-.--.-.--.-.-.--.-.-.tabla-productos:.-.-.-.-.-.-.-.-.--.-.--.-.-.--.-.-.-.
+CREATE TABLE `vapesuissee`.`productos` ( `codpro` INT NOT NULL AUTO_INCREMENT ,
+`descripcion` VARCHAR(100) NOT NULL , 
+`precio` DECIMAL(10) NOT NULL ,
+`stock` INT(255) NOT NULL ,
+`estado` VARCHAR(100000) NOT NULL ,
+`imagen` VARCHAR(50) NOT NULL ,
+`fecha` DATE NOT NULL ,
+ PRIMARY KEY (`codpro`)) ENGINE = InnoDB;
+
+
+.-.-.--.--.-.-.--.--.--.Clientes.-.--.---..-.-.-.-.-.-.--.--..-.---.--
+CREATE TABLE `vapesuissee`.`clientes` ( `codcli` INT NOT NULL AUTO_INCREMENT ,
+`nombre` VARCHAR(50) NOT NULL ,
+`correo` VARCHAR(60) NOT NULL ,
+`password` VARCHAR(50) NOT NULL , 
+PRIMARY KEY (`codcli`)) ENGINE = InnoDB;
+
+
+.-.-.--.--.-.-.--.--.--.Pedidos.-.--.---..-.-.-.-.-.-.--.--..-.---.--
+CREATE TABLE `vapesuissee`.`pedido`(numpedido int PRIMARY KEY AUTO_INCREMENT,
+codcli varchar(100) not null REFERENCES clientes(codcli),
+fecha date not null) ENGINE = InnoDB;	 
+
+
+.-.-.--.--.-.-.--.--.--.DetallesPedidos.-.--.---..-.-.-.-.-.-.--.--..-.---.--
+CREATE TABLE `vapesuissee`.`detallePedido`(numpedido int NOT null,
+codpro int NOT null,
+can int NOT null, 
+FOREIGN KEY (numpedido) REFERENCES pedido(numpedido),
+FOREIGN KEY (codpro) REFERENCES productos(codpro)) ENGINE = InnoDB;
